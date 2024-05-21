@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExportToTSV</RootNamespace>
+    <AssemblyName>ExportToTSV</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CorePluginInterfaces, Version=2.0.100.0, Culture=neutral, PublicKeyToken=583bede96b7c94a3, processorArchitecture=MSIL">
+      <HintPath>packages\ParatextCorePluginInterfaces.2.0.100\lib\netstandard2.0\CorePluginInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EmbeddedUiPluginInterfaces, Version=2.0.23.0, Culture=neutral, PublicKeyToken=583bede96b7c94a3, processorArchitecture=MSIL">
+      <HintPath>packages\ParatextEmbeddedUiPluginInterfaces.2.0.23\lib\net48\EmbeddedUiPluginInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginInterfaces, Version=2.0.100.0, Culture=neutral, PublicKeyToken=583bede96b7c94a3, processorArchitecture=MSIL">
+      <HintPath>packages\ParatextPluginInterfaces.2.0.100\lib\netstandard2.0\PluginInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControl.Designer.cs">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportToTSVControl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainControl.resx">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF "%25ParatextInstallDir%25" == "" goto nocopy
+IF NOT EXIST "%25ParatextInstallDir%25" goto nocopy
+
+@echo Copying files to %25ParatextInstallDir%25\plugins\$(ProjectName)
+xcopy "$(TargetPath)" "%25ParatextInstallDir%25\plugins\$(ProjectName)\*.ptxplg" /y /i
+xcopy "$(TargetDir)$(TargetName).pdb" "%25ParatextInstallDir%25\plugins\$(ProjectName)" /y /i
+
+:nocopy</PostBuildEvent>
+  </PropertyGroup>
+</Project>

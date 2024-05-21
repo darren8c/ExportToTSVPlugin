@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Paratext", "%ParatextInstallDir%\Paratext.exe", "{6C7F3087-5CBA-4DE5-BB53-892DA717FC02}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = %ParatextInstallDir%\Paratext.exe
+		RemoteMachine = DESKTOP-1N7JH49
+		StartingDirectory = %ParatextInstallDir%
+		Environment = Default
+		LaunchingEngine = fb0d4648-f776-4980-95f8-bb7f36ebc1ee
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+		IORedirection = Auto
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportToTSV", "ExportToTSV.csproj", "{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C7F3087-5CBA-4DE5-BB53-892DA717FC02}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7F3087-5CBA-4DE5-BB53-892DA717FC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C3E86E-93CD-4E36-B510-F49FE4D24A56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15BD7833-E0AC-4CDA-A295-DE9C69B14BD0}
+	EndGlobalSection
+EndGlobal
